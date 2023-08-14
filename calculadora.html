@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>B&BM Calculadora </title>
+    <meta name = "viewport" content= "width=device-width, initial-scale=1.0">
+    <style>
+        
+      body {
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        margin: auto;
+        max-width: 500px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 2px solid #ccc;
+      }
+      select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 2px solid #ccc;
+      }
+      input[type="submit"] {
+        background-color: #800080;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+      }
+      input[type="submit"]:hover {
+        background-color: #FF00FF;
+      }
+      .result {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 24px;
+      }
+      .summary {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+      }
+      .note {
+        margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .date-time {
+        margin-top: 2px;
+        text-align: center;
+        font-size: 18px;
+    }
+    
+    .info {
+        margin-top: 2px;
+        text-align: center;
+        font-size: 18px;
+    }
+    
+    </style>
+  </head>
+  <body>
+    <h1>Faça o cálculo da sua transferência </h1>
+    
+    <form id="calculator-form">
+      
+      <label for="amount">Insira o valor à enviar (em Meticais):</label>
+      <input type="number" id="amount" name="amount" placeholder="Enter amount...">
+      
+      
+      <input type="submit" value="Calcular">
+      
+    </form>
+    
+    <div class="result" id="result"></div>
+    <div class="summary" id="summary"></div>
+    <div class = "date-time" id= "date-time"></div>
+    <div class = "note" id= "note"></div>
+    <div class = "info" id= "info"></div>
+    
+    <script>
+     
+      var calculatorForm = document.getElementById('calculator-form');
+      var resultDiv = document.getElementById('result');
+      var summaryDiv = document.getElementById('summary');
+      var noteDiv = document.getElementById('note')
+      var infoDiv = document.getElementById('info')
+
+      calculatorForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var sourceCurrency = "Reais";
+        var targetCurrency = "Rublos";
+        var amount = this.elements['amount'].value;
+        
+    
+        
+        // % Deduction from the amount in Meticals
+    var deductedAmount = 0; 
+    
+    // Percental added to amount in Rubles
+     var deductedAmount_1 = 0 ;
+   
+
+    // Call the conversion API here and get the converted amount
+    // We will use a mock API call for this example
+    var exchangeRate = 19.83; 
+    var exchangeRate_0 = exchangeRate - (exchangeRate*0.1); //10%
+    var exchangeRate_1 = exchangeRate - (exchangeRate*0.09); //9%
+    var exchangeRate_2 = exchangeRate - (exchangeRate*0.08); //8%
+    var exchangeRate_3 = exchangeRate - (exchangeRate*0.07); //7%
+    var exchangeRate_4 = exchangeRate - (exchangeRate*0.06); //6%
+    var exchangeRate_5 = exchangeRate - (exchangeRate*0.05); //5%
+    var exchangeRate_6 = exchangeRate - (exchangeRate*0.04); //4%
+    var exchangeRate_7 = exchangeRate - (exchangeRate*0.035); //3%
+    var exchangeRate_8 = exchangeRate - (exchangeRate*0.03); //2.5%
+      var exchage_main = 0;
+      
+    
+     // If condition for each amount interval
+     if (amount < 2300){
+        exchage_main = exchangeRate_0
+        
+    } else if (amount >= 2300 && amount <3800 ) {
+        exchage_main = exchangeRate_1
+        
+    } else if (amount>= 3800 && amount < 5700) {
+        exchage_main = exchangeRate_2
+        
+    } else if (amount >= 5700 && amount < 7600){
+        exchage_main = exchangeRate_3
+        
+    } else if (amount >= 7600 && amount < 9500){
+        exchage_main = exchangeRate_4
+        
+    } else if (amount >= 9500 && amount < 11500){
+        exchage_main = exchangeRate_5
+        
+    }else if (amount >= 11500 && amount < 15300){
+        exchage_main = exchangeRate_6
+    } else if (amount >= 15300) {
+        exchage_main = exchangeRate_7
+    }
+   
+      var exchage_for_MZn = 0;
+      var echange_for_ruble = 0; 
+    
+      let convertedAmount;
+    if (sourceCurrency === 'Reais') {
+      // Convert from USD to the target currency
+      convertedAmount = amount * exchage_main;
+    } else {
+      // Convert from the target currency to USD
+      convertedAmount =  amount / exchage_main;
+    }
+
+    // Display the result
+    if (sourceCurrency === 'Reais') {
+      resultDiv.textContent = `Ao enviar ${amount} Reais receberá ${convertedAmount.toFixed(2)} ${targetCurrency}`;
+    } else {
+      resultDiv.textContent = `Para receber ${amount} Rublos deve enviar ${convertedAmount.toFixed(2)} Reais`;
+    }
+
+    // Display the summary
+    var commission = 0;
+    if (amount <  2300){
+        commission = 10
+        
+    } else if (amount >= 2300 && amount <3800 ) {
+        commission = 9
+        
+    } else if (amount>= 3800 && amount < 5700) {
+        commission = 8
+        
+    } else if (amount >= 5700 && amount < 7600){
+        commission = 7
+        
+    } else if (amount >= 7600 && amount < 9500){
+        commission = 6
+        
+    } else if (amount >= 9500 && amount < 11500){
+        commission = 5
+        
+    }else if (amount >= 11500 && amount < 15300){
+        commission = 4
+        
+    } else if (amount >= 15300) {
+        commission = 3.5
+    }
+   
+   /// const commissionAmount = amount * commission / 100;
+    const rate = exchangeRate.toFixed(2);
+    summaryDiv.textContent = `Exchange rate: 1 BRL = ${exchangeRate} Rublos , Commission charged: ${commission}%`; /// (${commissionAmount.toFixed(2)} USD);
+  
+   /// display date and time 
+    var dt = new Date();
+    document.getElementById('date-time').innerHTML = dt;
+    
+    
+   /// display additional information (note)
+    noteDiv.textContent = 'Envie o screenshot desta página juntamente com o comprovativo da transferência para o nosso whatsapp';
+    
+/// display bank account information 
+    infoDiv.innerHTML = "<br><b>Dados bancários:</b><br>" +
+    "<br>" +
+    "Para me transferir R$ pela conta do Nubank ou de outros bancos pelo Pix, use o link abaixo: <br>" +
+    "https://nubank.com.br/pagar/mqqbw/snwLbsy97y<br>" ;
+    
+    
+    
+  });
+</script>
+
+</body>
+</html>
