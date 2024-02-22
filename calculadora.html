@@ -168,7 +168,7 @@
       var echange_for_ruble = 0; 
     
       let convertedAmount;
-    if (sourceCurrency === 'Reais') {
+    if (sourceCurrency === 'Rublos') {
       // Convert from USD to the target currency
       convertedAmount = amount * exchage_main;
     } else {
@@ -177,7 +177,7 @@
     }
 
     // Display the result
-    if (sourceCurrency === 'Rublos') {
+    if (sourceCurrency === 'Meticais') {
       resultDiv.textContent = `Ao enviar ${amount} Rublos receberá ${convertedAmount.toFixed(2)} ${targetCurrency}`;
     } else {
       resultDiv.textContent = `Para receber ${amount} Rublos deve enviar ${convertedAmount.toFixed(2)} Reais`;
@@ -224,9 +224,16 @@
     
 /// display bank account information 
     infoDiv.innerHTML = "<br><b>Dados bancários:</b><br>" +
-    "<br>" +
-    "Para me transferir R$ pela conta do Nubank ou de outros bancos pelo Pix, use o link abaixo e siga as instruções: <br>" +
-    "https://nubank.com.br/pagar/mqqbw/snwLbsy97y<br>" ;
+    "<p><b>SBERBANK</b><br>" +
+    "Titular: Mariamo Lobo (Мариамо да Силва Лобу)<br>" +
+    "Número do Cartão: 2961672010001<br>" +
+    "<p><b>Sberbank</b>: +79522234430<br>" +
+    "Titular: БЕЛТОН АРМАНДУ Ж</p>" +
+    "<p>" +
+    "<b>Tinkoff</b><br>" +
+    "Titular: БЕЛТОН АРМАНДУ Ж<br>" +
+    "Número do Cartão: 2200700890697633<br>" +
+    "Celular +79522234430</p>" ;
     
     
     
