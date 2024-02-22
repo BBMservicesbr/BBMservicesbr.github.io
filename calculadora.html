@@ -112,7 +112,7 @@
       calculatorForm.addEventListener('submit', function(e) {
         e.preventDefault();
         var sourceCurrency = "Rublos";
-        var targetCurrency = "Maticais";
+        var targetCurrency = "Meticais";
         var amount = this.elements['amount'].value;
         
     
@@ -129,38 +129,38 @@
     var exchangeRate = 0.68; 
     var exchangeRate_0 = exchangeRate - (exchangeRate*0.05); //10%
     var exchangeRate_1 = exchangeRate - (exchangeRate*0.05); //9%
-    var exchangeRate_2 = exchangeRate - (exchangeRate*0.05); //8%
-    var exchangeRate_3 = exchangeRate - (exchangeRate*0.05); //7%
-    var exchangeRate_4 = exchangeRate - (exchangeRate*0.05); //6%
-    var exchangeRate_5 = exchangeRate - (exchangeRate*0.04); //5%
-    var exchangeRate_6 = exchangeRate - (exchangeRate*0.035); //4%
-    var exchangeRate_7 = exchangeRate - (exchangeRate*0.03); //3%
-    var exchangeRate_8 = exchangeRate - (exchangeRate*0.02.5); //2.5%
+    var exchangeRate_2 = exchangeRate - (exchangeRate*0.04); //8%
+    var exchangeRate_3 = exchangeRate - (exchangeRate*0.035); //7.5%
+    var exchangeRate_4 = exchangeRate - (exchangeRate*0.03); //7%
+    var exchangeRate_5 = exchangeRate - (exchangeRate*0.028); //6.5%
+    var exchangeRate_6 = exchangeRate - (exchangeRate*0.027); //6%
+    var exchangeRate_7 = exchangeRate - (exchangeRate*0.025); //5.5%
+    var exchangeRate_8 = exchangeRate - (exchangeRate*0.02); //5%
       var exchage_main = 0;
       
     
      // If condition for each amount interval
-     if (amount < 2300){
+     if (amount < 30000){
         exchage_main = exchangeRate_0
         
-    } else if (amount >= 2300 && amount <3800 ) {
+    } else if (amount >= 30000 && amount <50000 ) {
         exchage_main = exchangeRate_1
         
-    } else if (amount>= 3800 && amount < 5700) {
+    } else if (amount>= 50000 && amount < 75000) {
         exchage_main = exchangeRate_2
         
-    } else if (amount >= 5700 && amount < 7600){
+    } else if (amount >= 75000 && amount < 100000){
         exchage_main = exchangeRate_3
         
-    } else if (amount >= 7600 && amount < 50000){
+    } else if (amount >= 100000 && amount < 125000){
         exchage_main = exchangeRate_4
         
-    } else if (amount >= 50000 && amount < 75000){
+    } else if (amount >= 125000 && amount < 150000){
         exchage_main = exchangeRate_5
         
-    }else if (amount >= 75000 && amount < 100000){
+    }else if (amount >= 150000 && amount < 200000){
         exchage_main = exchangeRate_6
-    } else if (amount >= 100000) {
+    } else if (amount >= 200000) {
         exchage_main = exchangeRate_7
     }
    
@@ -180,34 +180,34 @@
     if (sourceCurrency === 'Rublos') {
       resultDiv.textContent = `Ao enviar ${amount} Rublos receberá ${convertedAmount.toFixed(2)} ${targetCurrency}`;
     } else {
-      resultDiv.textContent = `Para receber ${amount} Rublos deve enviar ${convertedAmount.toFixed(2)} Reais`;
+      resultDiv.textContent = `Para receber ${amount} Meticais deve enviar ${convertedAmount.toFixed(2)} Rublos`;
     }
 
     // Display the summary
     var commission = 0;
-    if (amount <  2300){
+    if (amount < 30000){
         commission = 5
         
-    } else if (amount >= 2300 && amount <3800 ) {
+    } else if (amount >= 30000 && amount <50000 ) {
         commission = 5
         
-    } else if (amount>= 3800 && amount < 5700) {
-        commission = 5
-        
-    } else if (amount >= 5700 && amount < 7600){
-        commission = 5
-        
-    } else if (amount >= 7600 && amount < 50000){
-        commission = 5
-        
-    } else if (amount >= 50000 && amount < 75000){
+    } else if (amount>= 50000 && amount < 75000) {
         commission = 4
         
-    }else if (amount >= 75000 && amount < 100000){
+    } else if (amount >= 75000 && amount < 100000){
         commission = 3.5
         
-    } else if (amount >= 100000) {
+    } else if (amount >= 100000 && amount < 125000){
         commission = 3
+        
+    } else if (amount >= 125000 && amount < 150000){
+        commission = 2.8
+        
+    }else if (amount >= 150000 && amount < 200000){
+        commission = 2.7
+        
+    } else if (amount >= 200000) {
+        commission = 2.5
     }
    
    /// const commissionAmount = amount * commission / 100;
